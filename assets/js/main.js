@@ -2,7 +2,7 @@
 // Config
 // ===============================
 const WHATSAPP_URL =
-  "https://wa.me/554333711212?text=Olá! Preciso de ajuda com um problema bancário relacionado ao meu benefício. Gostaria de saber mais sobre os serviços da INVESTCRED.";
+  "https://wa.me/554333711212?text=Olá! Preciso de ajuda com um problema bancário relacionado ao meu benefício. Gostaria de saber mais sobre a acessoria jurídica.";
 
 // Helpers
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -107,9 +107,9 @@ $$(".service-card").forEach((card) => {
     card.style.transition = "background-color 0.3s ease";
   });
 
-  card.addEventListener("mouseleave", () => {
-    card.style.backgroundColor = SERVICE_CARD_BG_DEFAULT;
-  });
+  card.addEventListener('mouseleave', function() {
+    this.style.backgroundColor = '';
+});
 });
 
 // ===============================
