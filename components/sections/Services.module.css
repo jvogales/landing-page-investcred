@@ -1,0 +1,167 @@
+.services {
+  background: var(--gradient-dark);
+  padding: 120px 0;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg);
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: cardShimmer 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes cardShimmer {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 15px 40px rgba(72, 209, 204, 0.25);
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 15px;
+  text-transform: none;
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tags > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tag {
+  font-size: 14px;
+  font-weight: 500;
+  color: #E8F7F6;
+}
+
+.dot {
+  color: #E8F7F6;
+  font-size: 8px;
+}
+
+.lines {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.line {
+  width: 50px;
+  height: 4px;
+  background-color: rgba(232, 247, 246, 0.6);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: shimmer-line 2s infinite;
+}
+
+@keyframes shimmer-line {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.description {
+  font-size: 15px;
+  font-weight: 400;
+  color: #f2f3f4;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: 50px 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}

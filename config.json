@@ -1,0 +1,30 @@
+{
+  "project": {
+    "name": "MAX ASSESSORIA Website",
+    "version": "1.0.0",
+    "description": "Plataforma web de consultoria jurídica especializada em defesa de direitos financeiros",
+    "author": "MAX ASSESSORIA",
+    "email": "contato@maxassessoria.com.br",
+    "website": "https://maxassessoria.com.br",
+    "phone": "(43) 3371-1212",
+    "whatsapp": "+55 43 3371-1212"
+  },
+  "structure": {
+    "pages": [],
+    "assets": {}
+  },
+  "colors": {
+    "primary": "#48D1CC",
+    "primary-dark": "#2BA39D",
+    "secondary": "#CDC9C9",
+    "secondary-light": "#E8F7F6",
+    "accent": "#48D1CC",
+    "text": "#2C3E50",
+    "background": "#ffffff"
+  },
+  "fonts": {
+    "primary": "Prompt",
+    "fallback": "sans-serif",
+    "weights": [100, 400, 900]
+  }
+}
