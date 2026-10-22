@@ -1,6 +1,14 @@
 # Histórico de alterações
 
-## Não publicado
+## Remodelação para qualificação de interesse — não publicada
+
+- Nova identidade visual, layout editorial, hierarquia de conteúdo e foco na conversa com o visitante.
+- Qualificador com escolhas guiadas, revisão e encaminhamento explícito ao WhatsApp, sem cadastro ou envio automático.
+- Página de privacidade factual, FAQ, novos metadados e ícone da marca.
+- Lógica de contato e qualificação centralizada; componentes e dependência de animação antigos removidos.
+- Headers de segurança e testes automatizados Playwright/axe para desktop, celular e fluxo sem JavaScript.
+
+## Organização anterior
 
 - Documentação unificada para o projeto Next.js, com guias de desenvolvimento, Vercel e branches.
 - Next.js e configuração ESLint atualizados para 15.5.28; PostCSS corrigido via override e dependência `clsx` não utilizada removida.

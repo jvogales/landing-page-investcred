@@ -9,7 +9,7 @@ Observação do remoto em 21/10/2026:
 | `refactor/clean-code` | `1369ae5` | Ancestral de `main` e da base |
 | `organize` | `451fe61` | Contém a base e acrescenta lockfile, CI e outputs `.next` versionados; não altera `app`, `components` ou `styles` em relação à base |
 
-Esses nomes e commits são um registro, não uma garantia sobre o estado futuro do remoto. As correções de organização e QA estão na branch `chore/qa-project-review`, criada a partir da base preservada desta tarefa.
+Esses nomes e commits são um registro, não uma garantia sobre o estado futuro do remoto. As correções de organização e QA foram enviadas em `chore/qa-project-review`. A remodelação da interface e o qualificador para WhatsApp estão na branch `feat/lead-experience`, baseada nesse trabalho validado.
 
 ## Caminho recomendado
 

@@ -1,0 +1,11 @@
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Icon from '@/components/landing/Icon';
+
+export const metadata: Metadata = { title: 'Privacidade e uso de dados | MAX ASSESSORIA', description: 'Entenda como funciona a preparação de uma conversa pelo site da MAX ASSESSORIA.' };
+
+export default function PrivacyPage() {
+  return <><a href="#conteudo" className="skip-link">Pular para o conteúdo</a><Header /><main id="conteudo" className="privacy-page" tabIndex={-1}><span className="eyebrow">INFORMAÇÃO CLARA, DESDE O COMEÇO.</span><h1>Privacidade e<br />uso de dados.</h1><p>Esta página explica o funcionamento do site e do primeiro contato com a MAX ASSESSORIA.</p><h2>O que você informa no site</h2><p>O qualificador permite selecionar um assunto e, opcionalmente, a situação em que você está. Não pedimos nome, telefone, CPF, dados bancários ou documentos. Essas escolhas ficam temporariamente na memória da página, sem cadastro ou armazenamento em uma base de leads pelo site.</p><h2>Quando você continua no WhatsApp</h2><p>As escolhas são usadas para preparar uma mensagem em um link do WhatsApp. O site não envia a mensagem automaticamente. Você decide abrir o serviço e confirmar o envio. A partir desse momento, o atendimento ocorre em um serviço de terceiros, sujeito às condições e práticas de privacidade do WhatsApp e ao atendimento da equipe.</p><h2>Dados técnicos da navegação</h2><p>O site não utiliza ferramentas de publicidade ou análise de audiência nesta versão. A infraestrutura de hospedagem pode processar registros técnicos necessários à operação, como informações de requisições e segurança. Esta página não define prazos de retenção dos provedores de infraestrutura.</p><h2>Cuide das suas informações</h2><p>Não envie senhas, códigos de autenticação ou credenciais de acesso. Antes de compartilhar documentos durante o atendimento, confirme o canal e esclareça com a equipe a finalidade das informações solicitadas.</p><h2>Como falar com a MAX</h2><p>Para esclarecer dúvidas sobre o atendimento e o uso de informações, escreva para <a href="mailto:contato@maxassessoria.com.br">contato@maxassessoria.com.br</a>.</p><Link href="/" className="plain-link">Voltar ao início <Icon name="arrow" size={18} /></Link></main><Footer /></>;
+}

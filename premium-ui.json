@@ -1,0 +1,18 @@
+{
+  "profile": "marketing",
+  "sourceRoots": ["app", "components", "styles", "lib"],
+  "ownership": {
+    "Select/Listbox": "native"
+  },
+  "requiredCommands": ["lint", "typecheck", "build", "smoke", "browser"],
+  "commands": {
+    "lint": "npm run lint",
+    "typecheck": "npm run type-check",
+    "build": "npm run build",
+    "smoke": "npm run test:smoke",
+    "browser": "npm run test:e2e"
+  },
+  "evidence": {
+    "failurePaths": "tests/e2e/experience.spec.ts"
+  }
+}

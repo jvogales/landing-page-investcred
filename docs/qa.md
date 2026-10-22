@@ -1,46 +1,47 @@
-# Revisão de QA
+# Revisão integrada da remodelação
 
-Revisão executada por dois agentes (frontend e backend/infra), seguida de validação integrada independente. A aplicação é uma landing page pública; não possui backend próprio, autenticação, pagamento ou formulário.
+A nova interface foi implementada por Zeus (frontend), Hades (lógica e infraestrutura), Poseidon (testes automatizados) e revisada por Kronos (auditoria geral), com integração e revisão visual independente.
 
-## Correções
+## O que mudou
 
-- Âncoras e IDs únicos, navegação Sobre funcional e ação Saber mais com destino real.
-- Menu móvel com nome acessível, estado expandido, Escape e retorno de foco, fechamento por navegação, clique externo e saída de foco.
-- Atalho Pular para o conteúdo, foco visível, alvos de toque e movimento reduzido.
-- Links de contato consistentes, sem botão aninhado dentro de link, com aviso de nova aba e `noopener`.
-- Hero móvel prioriza título e ação, em vez de reservar 300px para ilustração decorativa.
-- Contraste corrigido em navegação, cartões, ações e ícone de WhatsApp. Texto normal sobre gradiente primário usa `--c-on-primary`, com contraste mínimo analítico de 4,81:1 nos endpoints.
-- Prompt servida localmente e página 404 em português com retorno funcional.
-- Remoção de seções sem uso e de depoimentos, métricas e promessas comerciais sem evidência. O número publicado anteriormente no rodapé foi reutilizado; sua titularidade comercial não foi verificada.
-- Smoke robusto, com falhas explícitas para build ausente e porta ocupada.
+- Identidade petróleo, marfim e lima, nova composição editorial e hierarquia de conteúdo.
+- Qualificação com assunto obrigatório e situação opcional, revisão e ação explícita para continuar no WhatsApp.
+- Nenhum campo pessoal, relato livre, documento ou promessa de envio/cadastro automático. O contato continua sendo o publicado anteriormente pelo negócio.
+- FAQ nativa, privacidade factual, navegação entre páginas e fallback sem JavaScript.
+- Metadados e ícone renovados, componentes legados eliminados e dependência de animação retirada.
+- Contraste e foco revisados, textos/controles maiores no celular e nenhuma prova social ou garantia inventada.
+- Headers de segurança e testes de lógica, navegador, acessibilidade e privacidade incorporados ao CI.
 
-## Verificações de infraestrutura
+## Evidências
 
-| Verificação | Resultado |
+| Verificação | Evidência |
 | --- | --- |
-| `npm ci` | Passou, instalação limpa com lockfile |
-| `npm run check` | Lint e TypeScript passaram sem warnings |
-| `npm run build` | Passou após as últimas correções |
-| `npm run test:smoke` | Passou: homepage, metadados, IDs, âncoras, 11 assets JS/CSS e 404 |
-| Smoke sem build / com porta TCP ocupada | Ambos rejeitados como esperado |
-| `npm run audit:production` | Zero vulnerabilidades de produção |
-| Auditoria estática premium em modo strict | Zero achados; [JSON](qa/static-audit.json) |
-| Lint oficial de DESIGN.md | Zero erros; warnings de tokens indiretos registrados abaixo |
-| `git diff --check` | Passou |
+| Instalação limpa | `npm ci` passou após a remoção de Framer Motion |
+| Lint e TypeScript | `npm run check` passou |
+| Produção | Build passou; home, privacidade, ícone e 404 foram gerados |
+| Smoke | Passou: headers, metadados, entrada do qualificador, âncoras, 8 assets e 404 |
+| Dependências de produção | Auditoria retornou zero vulnerabilidades |
+| Auditoria oficial strict | [Zero achados](qa/static-audit.json), com sourceRoots completos |
+| Contexto de design | [Lint oficial](qa/design-lint.json), sem erros; avisos documentais preservados |
+| Testes automatizados | 16/16 passaram, zero falhas/ignorados/flaky; [execução de 41,2 s](qa/browser-report.json) |
+| Parecer de auditoria | [Kronos](qa/kronos.md) |
 
-Os comandos do CI foram executados nesta máquina. Isso não comprova que o GitHub Actions ou um deployment da Vercel executaram esses comandos remotamente.
+O build informa JavaScript inicial da home em aproximadamente 110 kB, contra 149 kB na versão anterior. Essa é a estimativa do Next.js para o bundle inicial, não uma medição de velocidade real ou de aumento de conversão.
 
-## Navegador
+## Cobertura do fluxo
 
-Chromium headless real via Playwright, com JavaScript e assets de produção. Foram exercitadas larguras de 320, 375, 768 e 1440px, menu móvel, Escape e foco, navegação interna, movimento reduzido, ausência de overflow horizontal e conteúdo já carregado com rede offline. A revisão adicional cobriu teclado no skip link, fechamento por clique externo/saída de foco, contato externo, 404 e retorno, além de reflow com zoom CSS de 200%.
+A suíte usa Playwright e axe-core em Chromium desktop e mobile emulado. Cobre enum obrigatório/opcional, rejeição de valores desconhecidos, construção de URL com destino fixo, erro e foco, revisão/edição preservada, teclado, limites de foco contra cabeçalho/barra fixa, navegação interna, 404, privacidade e retorno. Há inspeção em larguras de 320, 375, 768 e 1440px.
 
-axe-core 4.11.1 foi usado com regras WCAG A/AA (2.0/2.1/2.2). Resultados são registrados em [browser-report.json](qa/browser-report.json) e [interactions.json](qa/interactions.json). Não são uma certificação completa de acessibilidade nem substituem testes com leitor de tela ou dispositivos físicos.
+O teste do WhatsApp intercepta a navegação externa: nenhuma mensagem de teste é enviada ao negócio. São verificados ausência de requisições de mutação e armazenamento das escolhas, além do fallback sem JavaScript sem submissão GET.
 
-O axe marca parte do contraste como `incomplete` porque existem gradientes e pseudo-elementos. Esses resultados não foram ocultados. A revisão de CSS calculou limites conservadores de contraste: 4,81:1 para texto sobre gradiente primário, 4,84:1 para labels brancas do hero, 4,81:1 para texto claro em cartões compostos, 6,42:1 no CTA e 5,50:1 nas tags do portfólio. São análises das composições declaradas, não medições de todos os pixels e estados possíveis.
+A primeira rodada encontrou uma divergência entre o texto visível e o nome acessível do logotipo; a marcação foi corrigida. Uma expectativa excessivamente exata sobre a pontuação do H1 de 404 também foi ajustada, mantendo a exigência de status, idioma, diagnóstico e retorno. Falhas não foram suprimidas.
 
-## Limitações e publicação
+Os relatórios completos e screenshots são gerados em `playwright-report/` e `test-results/`, ignorados pelo Git. O CI preserva esses artefatos se falhar. Veja [desenvolvimento](development.md) para reproduzir.
 
-- A auditoria completa ainda aponta cinco alertas de desenvolvimento propagados de `braces@3.0.3`, na cadeia do ESLint. A versão mais recente consultada continua afetada; não houve downgrade ou supressão. A auditoria de produção é independente e passou com zero alertas.
-- O lint de DESIGN.md aponta tokens utilizados indiretamente por gradientes/foco; não foram inventados componentes no manifest para silenciar avisos. O CSS é o proprietário dos tokens.
-- Não foram testadas a entrega de mensagens pelo WhatsApp, a titularidade do número ou a configuração de domínio/DNS.
-- A API GitHub retorna `Forbidden`; branch padrão, proteções e abertura automática de PR não foram modificadas. Não há acesso à conta Vercel para inspecionar logs ou confirmar publicação. Consulte [deploy](deployment.md) e [branches](branches.md).
+## Limitações
+
+- O fluxo qualifica interesse e encaminha para WhatsApp; não existe CRM ou cadastro de lead. Aumento real de conversão depende de medição depois da publicação.
+- Não foram comprovados titularidade comercial do número, recebimento de mensagens, domínio/DNS ou publicação desta nova branch na Vercel.
+- O Chromium emulado não substitui aparelhos físicos, Safari/iOS, revisão com leitores de tela ou certificação WCAG completa. O axe conserva resultados inconclusivos para revisão, sem mascará-los.
+- A auditoria completa inclui alerta upstream na cadeia de desenvolvimento do ESLint. Não foi aplicado downgrade nem supressão; a auditoria de produção é separada e passou.
+- A explicação de privacidade descreve a implementação, sem inventar prazos de retenção ou garantir ausência de logs técnicos da hospedagem.

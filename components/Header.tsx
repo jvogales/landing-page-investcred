@@ -1,60 +1,35 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import styles from './Header.module.css';
+import Icon from '@/components/landing/Icon';
+import Link from 'next/link';
+
+export function Brand({ inverse = false }: { inverse?: boolean }) {
+  return <Link href="/#inicio" className={`brand${inverse ? ' brand--inverse' : ''}`} aria-label="MAX Assessoria — início"><span className="brand-symbol" aria-hidden="true"><span /><span /><span /></span><span className="brand-wordmark">MAX{' '}<span>ASSESSORIA</span></span></Link>;
+}
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuButton = useRef<HTMLButtonElement>(null);
-  const header = useRef<HTMLElement>(null);
-
+  const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    if (!isOpen) return;
-    const closeOutside = (event: PointerEvent) => {
-      if (!header.current?.contains(event.target as Node)) setIsOpen(false);
-    };
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false);
-        menuButton.current?.focus();
-      }
-    };
-    document.addEventListener('pointerdown', closeOutside);
-    document.addEventListener('keydown', closeOnEscape);
-    return () => {
-      document.removeEventListener('pointerdown', closeOutside);
-      document.removeEventListener('keydown', closeOnEscape);
-    };
-  }, [isOpen]);
-
-  return (
-    <header className={styles.header} ref={header}>
-      <div className={styles.container}>
-        <Link href="#inicio" className={styles.logo} onClick={() => setIsOpen(false)}>
-          MAX ASSESSORIA
-        </Link>
-        <button
-          ref={menuButton}
-          type="button"
-          className={styles.hamburger}
-          onClick={() => setIsOpen(open => !open)}
-          aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
-          aria-expanded={isOpen}
-          aria-controls="menu-principal"
-        >
-          <span aria-hidden="true">{isOpen ? '×' : '☰'}</span>
-        </button>
-        <nav id="menu-principal" className={`${styles.navMenu} ${isOpen ? styles.active : ''}`} aria-label="Menu principal"
-          onBlur={event => {
-            if (!header.current?.contains(event.relatedTarget as Node | null)) setIsOpen(false);
-          }}>
-          <Link href="#inicio" className={styles.navLink} onClick={() => setIsOpen(false)}>Início</Link>
-          <Link href="#servicos" className={styles.navLink} onClick={() => setIsOpen(false)}>Serviços</Link>
-          <Link href="#sobre" className={styles.navLink} onClick={() => setIsOpen(false)}>Sobre</Link>
-          <Link href="#footer" className={styles.navLink} onClick={() => setIsOpen(false)}>Contato</Link>
-        </nav>
-      </div>
-    </header>
-  );
+    if (!open) return;
+    const outside = (event: PointerEvent) => { if (!headerRef.current?.contains(event.target as Node)) setOpen(false); };
+    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') { setOpen(false); triggerRef.current?.focus(); } };
+    document.addEventListener('pointerdown', outside);
+    document.addEventListener('keydown', escape);
+    return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); };
+  }, [open]);
+  return <header className="site-header" ref={headerRef}>
+    <div className="shell header-inner">
+      <Brand />
+      <button className="menu-trigger" ref={triggerRef} type="button" aria-label={open ? 'Fechar menu' : 'Abrir menu'} aria-controls="menu-principal" aria-expanded={open} onClick={() => setOpen(value => !value)}><Icon name={open ? 'close' : 'plus'} size={24} /></button>
+      <nav id="menu-principal" className={`main-nav${open ? ' is-open' : ''}`} aria-label="Menu principal" onBlur={event => { if (!headerRef.current?.contains(event.relatedTarget as Node | null)) setOpen(false); }}>
+        <Link href="/#servicos" onClick={() => setOpen(false)}>Como ajudamos</Link>
+        <Link href="/#sobre" onClick={() => setOpen(false)}>A MAX</Link>
+        <Link href="/#duvidas" onClick={() => setOpen(false)}>Dúvidas frequentes</Link>
+        <Link className="button button--small" href="/#orientacao" onClick={() => setOpen(false)}>Conversar com a MAX <Icon name="arrowUp" size={16} /></Link>
+      </nav>
+    </div>
+  </header>;
 }

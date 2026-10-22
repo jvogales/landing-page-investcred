@@ -1,5 +1,37 @@
 {
-  "keyboard_skip_outside_blur_and_contacts": "passed",
-  "localized_404_and_return": "passed",
-  "200_percent_zoom": "passed"
+  "runAt": "2026-10-22T14:01:18.608Z",
+  "status": "passed",
+  "tests": 16,
+  "projects": [
+    "logic",
+    "desktop",
+    "mobile"
+  ],
+  "viewportsCssPx": [
+    320,
+    375,
+    768,
+    1440
+  ],
+  "verified": [
+    "allowlisted topic/stage validation and 12 valid WhatsApp URL combinations",
+    "inline errors, required topic and focus association",
+    "radio Space and native select ArrowUp keyboard interaction",
+    "review and edit preserve choices and focus",
+    "focused radio label/review heading/edit heading/submit unobscured by fixed header and mobile contact bar",
+    "no free-text, identity or banking data inputs",
+    "no site POST/mutation, cookies, localStorage, sessionStorage or automatic popup",
+    "explicit WhatsApp handoff intercepted locally; no message or external request sent",
+    "mobile menu Escape/focus/navigation and skip-to-content",
+    "unique IDs, working anchors and horizontal reflow at four widths",
+    "privacy route status/content/accessibility and cross-route navigation",
+    "localized 404 status/accessibility and return to homepage",
+    "JavaScript-disabled readable content, direct WhatsApp contact and disabled qualification submit"
+  ],
+  "limitations": [
+    "Chromium headless only; no physical device or screen-reader certification",
+    "gradient/pseudo-element contrast marked incomplete is preserved in browser-report.json",
+    "WhatsApp ownership, service availability and real message delivery were not tested",
+    "GitHub Actions workflow configured but not observed executing remotely"
+  ]
 }

@@ -1,6 +1,6 @@
 # MAX ASSESSORIA — website
 
-Landing page de consultoria jurídica e defesa de direitos financeiros. O repositório mantém o nome histórico `landing-page-investcred`; a aplicação atual usa Next.js App Router, React, TypeScript, CSS Modules e Framer Motion.
+Site institucional com qualificação de interesse e encaminhamento para atendimento via WhatsApp. O repositório mantém o nome histórico `landing-page-investcred`; a aplicação atual usa Next.js App Router, React, TypeScript, CSS Modules e Framer Motion.
 
 ## Começar
 
@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Não há backend, banco de dados ou variável de ambiente obrigatória. O contato usa links de WhatsApp. `.env.example` documenta esse estado; nunca versione credenciais.
+Não há backend de coleta, banco de dados ou variável de ambiente obrigatória. O qualificador usa opções guiadas, prepara uma mensagem e deixa o visitante decidir se quer enviá-la pelo WhatsApp. `.env.example` documenta esse estado; nunca versione credenciais.
 
 ## Validar e executar em produção
 
@@ -19,6 +19,8 @@ Não há backend, banco de dados ou variável de ambiente obrigatória. O contat
 npm run check
 npm run build
 npm run test:smoke
+# Navegador instalado conforme docs/development.md:
+npm run test:e2e
 npm start
 ```
 
@@ -27,7 +29,9 @@ O smoke test inicia seu próprio servidor de produção na porta 3100, valida p�
 ## Estrutura
 
 - `app/`: layout, metadados e composição da página inicial.
-- `components/`: cabeçalho, rodapé, seções e componentes reutilizáveis.
+- `components/`: página institucional, cabeçalho, rodapé e qualificador.
+- `lib/`: contato compartilhado, opções permitidas e validação do fluxo.
+- `tests/e2e/`: testes automatizados de lógica, interface e acessibilidade.
 - `styles/globals.css`: estilos e tokens globais.
 - `public/`: arquivos estáticos.
 - `scripts/`: verificações executáveis.
@@ -39,6 +43,7 @@ O smoke test inicia seu próprio servidor de produção na porta 3100, valida p�
 - [Deploy na Vercel](docs/deployment.md)
 - [Branches e contribuições](CONTRIBUTING.md)
 - [Diagnóstico das branches existentes](docs/branches.md)
+- [Fluxo de qualificação](docs/leads.md)
 - [Revisão de QA](docs/qa.md)
 - [Histórico](CHANGELOG.md)
 - [Contato](CONTACT.md)

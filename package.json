@@ -7,20 +7,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint app components --ext .ts,.tsx --report-unused-disable-directives",
+    "lint": "eslint app components lib scripts tests playwright.config.ts next.config.js --ext .js,.mjs,.ts,.tsx --report-unused-disable-directives",
     "type-check": "tsc --noEmit",
     "check": "npm run lint && npm run type-check",
     "test:smoke": "node scripts/smoke.mjs",
-    "audit:production": "npm audit --omit=dev --audit-level=high"
+    "audit:production": "npm audit --omit=dev --audit-level=high",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@fontsource/prompt": "5.3.0",
-    "framer-motion": "^10.16.0",
     "next": "15.5.28",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.64.1",
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",

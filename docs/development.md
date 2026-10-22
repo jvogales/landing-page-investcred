@@ -2,44 +2,48 @@
 
 ## Ferramentas e instalação
 
-Use Node.js 24 (`nvm use`, se você usa nvm). Execute os comandos na raiz, junto a `package.json`.
+Use Node.js 24 (`nvm use`, se você usa nvm). Execute na raiz, junto a `package.json`:
 
 ```bash
 npm ci
 npm run dev
 ```
 
-`npm ci` usa o lockfile versionado e falha se ele não corresponder ao manifesto. Para alterar dependências, use npm e inclua `package.json` e `package-lock.json` na mesma revisão. Não use `--legacy-peer-deps` para ocultar conflitos.
+A instalação usa `package-lock.json`. Alterações de dependências devem incluir manifesto e lockfile na mesma revisão. Não use `--legacy-peer-deps` para ocultar conflitos.
 
 ## Comandos
 
 | Comando | Finalidade |
 | --- | --- |
-| `npm run dev` | Servidor com recarga durante desenvolvimento |
-| `npm run lint` | ESLint com configuração Next.js |
-| `npm run type-check` | TypeScript sem emissão |
-| `npm run check` | Lint seguido de TypeScript |
-| `npm run build` | Build otimizado e geração de páginas |
-| `npm run test:smoke` | Página, metadados, âncoras, JavaScript/CSS e 404 no servidor de produção |
-| `npm run audit:production` | Auditoria das dependências de produção (bloqueia alertas altos/críticos) |
-| `npm start` | Servidor do build já gerado |
+| `npm run dev` | Desenvolvimento com recarga |
+| `npm run check` | ESLint e TypeScript |
+| `npm run build` | Build de produção |
+| `npm run test:smoke` | HTTP, headers, navegação, assets e 404 |
+| `npm run test:e2e` | Lógica e testes de navegador com Playwright/axe |
+| `npm run test:e2e:ui` | Interface interativa do Playwright |
+| `npm run audit:production` | Auditoria de dependências de produção |
+| `npm start` | Executar o build já gerado |
 
-O CI executa instalação limpa, auditoria de produção, check, build e smoke test. O smoke também rejeita portas ocupadas e build ausente. A revisão de QA em navegador está descrita em [qa.md](qa.md); não há suíte de testes de componentes ou garantia de entrega de mensagens pelo WhatsApp.
+Antes do E2E, gere o build e instale o Chromium pelo comando oficial `npx playwright install chromium`. Em Linux, a instalação das dependências do navegador pode usar `npx playwright install --with-deps chromium`. Na máquina de nuvem com Chromium de sistema já disponível:
+
+```bash
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:e2e
+```
+
+A suíte inicia e encerra seu próprio servidor de produção na porta 3200; o smoke usa 3100. Não execute desenvolvimento e build simultaneamente: ambos escrevem em `.next`. Relatórios ficam em `playwright-report/` e artefatos em `test-results/`, ignorados pelo Git. O CI executa instalação limpa, auditoria, check, build, smoke e E2E.
 
 ## Organização
 
-`app/page.tsx` define as seções exibidas. As seções antigas `About` e `WhyMax`, sem uso, foram removidas. A explicação de atendimento fica em `Atendimento`, sem depoimentos atribuídos a clientes sem evidência. Metadados ficam em `app/layout.tsx`; estilos globais em `styles/globals.css`. Não existe configuração de conteúdo carregada de `config.json`.
+`app/page.tsx` compõe `components/LandingPage.tsx`. Cabeçalho, rodapé e qualificador ficam em `components/`. `lib/leads.ts` mantém opções, validação e URL de WhatsApp; `lib/contact.ts` mantém o contato compartilhado. Consulte [o contrato do fluxo](leads.md).
 
-Não versione `.next`, `node_modules`, `.vercel`, arquivos `.env` com valores ou `*.tsbuildinfo`. O Next.js mantém `next-env.d.ts`; não edite suas referências manualmente.
+O proprietário executável dos tokens e estilos é `styles/globals.css`; `DESIGN.md` registra a direção visual. A fonte Prompt é local via `@fontsource/prompt`, com corpo de sistema. Metadados e ícone ficam em `app/`; `/privacidade` explica o funcionamento real do site. O qualificador não tem backend de cadastro ou envio.
+
+Não versione `.next`, instalações, relatórios gerados, `.vercel` ou valores de ambiente. Não há variável obrigatória nem banco de dados. Não restaure a antiga referência de `next-env.d.ts`: o Next.js mantém esse arquivo.
 
 ## Dependências e segurança
 
-Next.js e `eslint-config-next` estão alinhados em 15.5.28, mantendo React 18. `clsx` foi removido porque não era importado. `overrides.postcss` fixa 8.5.31: o Next.js 15 declara uma versão antiga com alertas de segurança. A substituição mantém a API PostCSS 8 e é validada pelo build; revise esse override ao atualizar o framework.
+Next.js e `eslint-config-next` estão alinhados em 15.5.28, com React 18. `overrides.postcss` fixa 8.5.31 para corrigir alertas na versão transitiva declarada pelo framework; revise esse override nas futuras atualizações. A remodelação retirou Framer Motion porque não utiliza a biblioteca.
 
-A auditoria também apontou um alerta de negação de serviço em `braces`, dependência de desenvolvimento do plugin ESLint via `fast-glob`/`micromatch`. A versão mais recente consultada (3.0.3) ainda é afetada. Não há downgrade ou supressão desse alerta; acompanhe a correção upstream. Isso não equivale a afirmar que a aplicação explora o caminho vulnerável.
+A auditoria completa inclui um alerta upstream em `braces`, na cadeia de desenvolvimento do ESLint. Não houve downgrade nem supressão. A auditoria de produção é executada separadamente.
 
-## Limitações conhecidas
-
-- A fonte Prompt é servida localmente por `@fontsource/prompt`, sem requisição obrigatória ao Google Fonts.
-- Os links de WhatsApp usam `components/contact.ts`, com o número que já existia no rodapé. A titularidade e a disponibilidade do canal comercial precisam ser verificadas pelo responsável pelo negócio.
-- O domínio nos metadados não comprova que domínio, DNS ou projeto Vercel estejam configurados.
+O contato deriva dos dados já publicados no rodapé. Sua titularidade e entrega de mensagens não são comprovadas pelos testes. O domínio nos metadados também não comprova configuração de DNS ou domínio na Vercel. Resultados executados e limitações estão em [QA](qa.md).

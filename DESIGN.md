@@ -1,41 +1,51 @@
 ---
 version: alpha
 name: MAX ASSESSORIA
-description: Landing page brasileira de orientação sobre direitos financeiros, preservando a identidade turquesa e azul-escura existente.
+description: Clareza financeira e contato consciente em uma landing page brasileira, com qualificação guiada antes de continuar no WhatsApp.
 colors:
-  primary: '#48D1CC'
-  primary-dark: '#2BA39D'
-  background: '#FFFFFF'
-  text: '#2C3E50'
-  on-primary: '#102B36'
-  secondary: '#CDC9C9'
-  light: '#E8F7F6'
-  focus: '#163C40'
+  primary: '#143E39'
+  primary-deep: '#102F2B'
+  background: '#F5F7F2'
+  surface: '#FFFFFF'
+  accent: '#D9F279'
+  text: '#1C302B'
+  muted: '#56665D'
+  line: '#DCE2D7'
+  control-line: '#637B6D'
+  error: '#A12C28'
 typography:
-  sans:
+  display:
     fontFamily: "Prompt, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+  body:
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
 rounded:
-  md: 16px
-  lg: 20px
-  pill: 50px
+  control: 8px
+  card: 16px
 spacing:
-  page-max: 1440px
-  header-max: 1140px
+  page-max: 1240px
 components:
   button:
-    textColor: "{colors.on-primary}"
-    backgroundColor: "{colors.primary}"
-    rounded: "{rounded.md}"
+    backgroundColor: '{colors.primary}'
+    textColor: '{colors.surface}'
+    rounded: '{rounded.control}'
   navigation:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.text}"
-  card:
-    backgroundColor: "{colors.background}"
-    textColor: "{colors.text}"
-    rounded: "{rounded.lg}"
+    backgroundColor: '{colors.background}'
+    textColor: '{colors.text}'
+  qualifier:
+    backgroundColor: '{colors.surface}'
+    textColor: '{colors.text}'
+    rounded: '{rounded.card}'
+  section:
+    backgroundColor: '{colors.background}'
+    textColor: '{colors.muted}'
   dark-section:
-    backgroundColor: "{colors.text}"
-    textColor: "{colors.light}"
+    backgroundColor: '{colors.primary-deep}'
+    textColor: '{colors.surface}'
+  accent-section:
+    backgroundColor: '{colors.accent}'
+    textColor: '{colors.primary}'
+  error:
+    textColor: '{colors.error}'
 ---
 
 # MAX ASSESSORIA Design System
@@ -44,72 +54,99 @@ components:
 
 ### Creative North Star
 
-Uma página de acolhimento e orientação financeira: turquesa luminoso sobre azul jurídico escuro, com seções alternadas e conteúdo legível. Esta revisão preserva a identidade; não é um redesign.
+Uma conversa que transforma um contrato confuso em um próximo passo compreensível. A página parece uma assessoria atenta e organizada, e não um portal bancário, uma campanha de dinheiro fácil ou um escritório com credenciais jurídicas presumidas.
+
+O usuário autorizou uma remodelação completa, substituindo a identidade turquesa anterior. A nova assinatura é o encontro entre manchete ampla em verde-petróleo e um cartão real de preparação da conversa, com dois passos claros. O acento lima aparece como marca de atenção, não como urgência artificial. A ilustração do papel na seção institucional é abstrata e decorativa, não um documento real analisado.
 
 ### Product context and register
 
-- Público: pessoas que buscam informações sobre contratos bancários e direitos financeiros.
-- Mercado e idioma: Brasil, português brasileiro; evidência em `app/layout.tsx`, conteúdo e contato do rodapé.
-- Uso: landing page pública, principalmente leitura e contato por WhatsApp, em celular ou desktop.
-- Registro: marketing institucional; não há CRUD, autenticação, pagamento ou formulário de coleta de dados.
-- Assinatura: contraste entre seções escuras, acentos turquesa e cartões arredondados.
-- Restrição: legibilidade e clareza das ações prevalecem sobre animações decorativas.
-- Anti-referências: dashboards genéricos, falso atendimento em tempo real e depoimentos ou garantias sem evidência.
-- Tokens: o proprietário executável é `styles/globals.css`; este documento registra seus valores, sem gerar CSS. CSS Modules consomem `--c-*`, `--radius-*` e `--gradient-*`.
+- Público: pessoas no Brasil com dúvidas sobre descontos em benefícios, contratos bancários e possíveis encaminhamentos jurídicos, incluindo pessoas com menor familiaridade digital.
+- Objetivo: gerar uma conversa qualificada no WhatsApp sem pedir dados pessoais pelo site.
+- Evidência: o pedido atual do usuário autoriza reestruturação e nova identidade; contatos e serviços já publicados no código orientam o conteúdo, sem comprovar credenciais, resultados ou garantias comerciais.
+- Registro: marketing institucional com um qualificador local. Não há CRUD, cadastro, pagamento, conta ou formulário de coleta de informações pessoais.
+- Idioma: português brasileiro; não há mercado ou locale japonês neste projeto.
+- Rotas: `/` para a landing page e `/privacidade` para explicação factual do fluxo e infraestrutura.
+- Anti-referências: dashboards, excesso de cartões e gradientes, emojis decorativos como hero, contadores inventados, falsos depoimentos, urgência ou disponibilidade online presumida.
+
+### Token ownership and deliberate evolution
+
+`styles/globals.css` é o proprietário executável dos tokens. Este documento registra a intenção e os valores, sem gerar CSS. O prefixo `--color-*` implementa `colors`; `--font-display`/`--font-body` implementam `typography`; `--radius-control`/`--radius-card` implementam `rounded`; `--shell` implementa a largura `page-max`. Os componentes usam esses tokens.
+
+| Regra anterior | Mudança autorizada | Implementação |
+| --- | --- | --- |
+| Turquesa e azul jurídico em seções com gradiente | Petróleo, marfim frio e lima com superfícies planas | Tokens `--color-*` e seções em `globals.css` |
+| Muitos cartões decorativos e CTAs diretos | Hero editorial com qualificador funcional | `LandingPage` e `LeadQualifier` |
+| Apenas link genérico de WhatsApp | Seleção guiada, revisão e decisão de continuar | `lib/leads.ts`, sem API de coleta |
+| Componentes e CSS Modules por seção legada | Seções estáticas compostas e CSS global canônico | `LandingPage`, `Header`, `Footer` e `landing/` |
 
 ## Colors
 
-`--c-primary` é o turquesa da marca; `--c-dark`/`--c-text` são o texto azul-escuro. Navegação usa `--c-dark` sobre turquesa uniforme. Botões e cartões com gradiente turquesa usam `--c-on-primary` (`#102B36`), cuja razão mínima nos endpoints é 4,80:1; texto branco não é permitido nessas superfícies. Texto turquesa claro fica reservado a títulos grandes sobre fundos escuros; rótulos pequenos em superfícies com transparência usam `#E8F7F6` para manter contraste mesmo durante o brilho decorativo. etiquetas sobre fundos claros usam turquesa profundo `#176660`. O foco usa `--c-focus`, com halo branco para permanecer visível em fundos claros e escuros. Não há tema escuro alternativo; as superfícies escuras fazem parte da marca.
+Petróleo `#143E39` transmite atenção e estabilidade. Marfim frio `#F5F7F2` oferece leitura confortável e evita a aparência de uma tela bancária. Lima `#D9F279` é um acento controlado em superfícies e detalhes; não é usado como texto pequeno sobre branco. Texto primário `#1C302B` e secundário `#56665D` são escuros o suficiente em superfícies claras. Erros são descritos em texto e usam `#A12C28`. Limites de controles e radios usam `--color-control-line` (`#637B6D`), contraste aproximado de 4,58:1 sobre branco; `--color-line` claro serve apenas para separações decorativas. Foco de links em superfícies escuras usa lima; o foco em superfícies claras usa verde escuro.
+
+Ações primárias: fundo petróleo e texto branco. No encerramento em lima, a ação continua petróleo e branca para permanecer reconhecível. Superfícies escuras usam texto claro sólido. Não há tema alternativo; fundos escuros fazem parte da composição da marca.
 
 ## Typography
 
-Prompt auto-hospedada via `@fontsource/prompt`, pesos 400/500/700/900, com fallback de sistema. Títulos recebem peso 700, corpo 400 e controles 500/700. O site não depende do Google Fonts em runtime. H1 é único e a hierarquia H2/H3 descreve as seções. Links de navegação usam nomes em português, consistentes com seus destinos.
+Prompt local, pesos 400/500/700, em wordmark e títulos. Corpo e controles usam fontes de sistema para leitura familiar. Não há fonte externa requerida em runtime. A hierarquia da página usa um H1, títulos de seção H2 e títulos de conteúdo H3.
+
+Conteúdo principal e controles são 15–16px; controles móveis e select têm 16px para legibilidade e evitar zoom automático em iOS. Helpers e notas operacionais têm 12–14px; microtexto decorativo pode ser menor. Não reduzir perguntas, erros ou escolhas essenciais para encaixar um cartão.
 
 ## Layout
 
-Conteúdo com máximo de 1440px; navegação com máximo de 1140px. Breakpoint móvel principal de 768px. O menu móvel é um disclosure não modal no cabeçalho; não é um diálogo e não bloqueia o restante da página. Âncoras possuem espaço de rolagem para o cabeçalho fixo. Em celulares, título e contato antecedem a decoração; a ilustração do Hero fica oculta para não empurrar o CTA para fora da primeira leitura. O documento é dono da rolagem, com scrollbar visível e gutter estável. Não há tabelas, seleção ou formulários.
+Conteúdo limitado a 1240px, com margens responsivas. Hero assimétrico: proposição à esquerda, preparação de contato à direita. No celular, proposição e ação precedem o qualificador. O contato persistente móvel fica no rodapé da viewport com espaço seguro e não substitui ações visíveis no conteúdo.
+
+A página pertence à rolagem do documento; não há painéis de conteúdo com scroll interno. Cabeçalho sticky tem âncoras com offset. Chrome compartilhado usa links `/#...` para funcionar também na página de privacidade. Formulário mantém uma base geométrica estável entre escolha e revisão; mensagens de erro ficam adjacentes aos campos. Scrollbars são visíveis, com baseline global padrão e fallback WebKit, e respeitam forced-colors.
 
 ## Elevation & Depth
 
-Sombras suaves turquesa em cartões e ações; fundo escuro com gradientes preservados. O cabeçalho fixo e o atalho de pular conteúdo devem permanecer acima das seções. Cartões descritivos não usam cursor de botão, pois não executam ações.
+Superfícies majoritariamente planas, com divisórias finas. Apenas o qualificador tem sombra suave para destacar a ação real. A ilustração institucional usa sombra e rotação como recurso visual, sem imitar dados pessoais ou resultado de um caso real. Não empilhar efeitos de brilho, flutuação e parallax.
 
 ## Shapes
 
-Controles e cartões usam os raios `md` de 16px e `lg` de 20px; etiquetas usam formas de pílula. Círculos decorativos são distintos de controles clicáveis.
+Ações têm raio de 8px; cartão principal tem raio de 16px. Não transformar todas as peças em pílulas. Círculos têm função específica: seleção de radio, número de etapa ou elemento abstrato da ilustração.
 
 ## Components
 
 ### Foundational visual states
 
-Links e botões possuem foco visível, hover e estado pressionado. Desativado aplica-se ao botão nativo, sem estado falso de envio. Não existem operações assíncronas internas, toasts ou skeletons.
+Links, botões, radios, selects e summaries têm foco visível, hover e semântica nativa. Controles desabilitados não disparam ação. O documento permanece legível sem JavaScript; o preparo interativo fica desabilitado antes da hidratação e um fallback `noscript` oferece contato direto, sem submeter escolhas pela URL da página.
 
 ### Buttons and actions
 
-`components/ui/Button.tsx` mantém botão nativo para ação e `LinkButton` para navegação, compartilhando estilos. Nunca aninhar botão em link. Links externos de contato indicam abertura de nova aba a leitores de tela. Número do WhatsApp tem proprietário único em `components/contact.ts`, derivado do rodapé existente; não foi inventado um novo contato comercial.
+Links navegam; botões alteram estado ou validam o qualificador. Não aninhar botões em links. A ação da fase de revisão é sempre **Continuar no WhatsApp**, abre uma nova aba com `noopener noreferrer` e informa isso a tecnologias assistivas. Não mostrar mensagem enviada, cadastro criado ou lead recebido: o site não executa essas operações.
 
-### Navigation and data display
+### Qualification and privacy behavior
 
-Cabeçalho: Início, Serviços, Sobre, Contato. Destinos únicos e existentes. Menu móvel expõe `aria-expanded`/`aria-controls`, fecha em Escape, navegação, clique externo ou saída de foco. Escape devolve foco ao gatilho. A primeira ação de teclado é Pular para o conteúdo.
+Proprietário do contrato: `lib/leads.ts`; proprietário da experiência: `components/landing/LeadQualifier.tsx`.
 
-### Forms and overlays
+1. O assunto é obrigatório e escolhido em um grupo de radio com três opções permitidas.
+2. A etapa/situação é uma seleção opcional de opções permitidas. **Decisão explícita: native select**, com popup e semântica do sistema operacional aceitos; não exige geometria de popup customizada.
+3. Não há nome, telefone, CPF, relato livre, documento, consentimento genérico ou armazenamento local/servidor. Não inventar uma integração de CRM.
+4. **Preparar minha conversa** valida localmente. Erro inline associado ao grupo, foco no primeiro campo inválido, escolhas preservadas.
+5. Revisão mostra apenas labels permitidas; heading recebe foco. **Editar informações** preserva escolhas e devolve foco ao heading de edição.
+6. O link apenas prepara uma mensagem em um destino WhatsApp permitido. O visitante decide abrir o serviço e confirmar o envio lá. Nenhuma requisição de lead é feita pelo site.
 
-Não aplicáveis à landing page atual; não adicionar modais ou formulários fictícios.
+### Navigation and disclosure
 
-### Iconography
+Header: Como ajudamos, A MAX, Dúvidas frequentes, Conversar com a MAX. Menu móvel é disclosure não modal com `aria-expanded`/`aria-controls`; fecha em Escape, navegação, clique externo e saída de foco. Escape retorna ao gatilho. FAQ usa `details`/`summary` nativos, que continuam funcionais sem JavaScript. Skip link é o primeiro destino de teclado.
 
-Emojis existentes são ilustrações leves, não controles sem texto. O botão flutuante de WhatsApp usa SVG decorativo e nome acessível explícito.
+### Iconography and illustration
+
+Ícones SVG de traço fino compartilham tamanho e stroke; são decorativos quando acompanhados por texto. A marca MAX usa três barras inclinadas como sinal gráfico abstrato. Não usar avatares, selos de certificação ou marcas de terceiros como falsa prova social.
 
 ### Motion
 
-Revelações e flutuações preservam o caráter existente, mas `prefers-reduced-motion` remove deslocamentos e animações; conteúdo continua visível. Rolagem suave é desativada sob movimento reduzido. Não usar movimento para esconder informação essencial.
+Apenas hover e transições curtas como feedback. Nenhuma animação esconde conteúdo, move controles ou atrasa a leitura. A preferência por movimento reduzido desativa transições e rolagem suave.
 
-### Content and data visualization
+### Content and trust
 
-Texto português direto. A revisão remove números de sucesso/valores recuperados não comprovados e promessa de resultado garantido. A antiga seção de depoimentos sem fontes passa a explicar os passos do atendimento, sem atribuir falas a pessoas fictícias. Não há gráficos nem indicadores comerciais comprovados.
+Sem resultados, métricas, clientes, prazos, gratuidade, credenciais jurídicas ou depoimentos inventados. A descrição comercial permanece orientação e intermediação. A FAQ esclarece que não há garantia de resultado; a página de privacidade descreve o fluxo técnico sem fingir política legal completa, prazos de retenção dos provedores ou ausência de logs de hospedagem.
 
 ## Do's and Don'ts
 
-- Manter identidade turquesa e o contato único existente.
-- Garantir navegação por teclado e destinos válidos em todos os tamanhos.
-- Não apresentar cartões estáticos como controles.
-- Não publicar garantias, métricas ou depoimentos como fatos sem evidência fornecida pelo negócio.
+- Priorizar clareza, tamanho de leitura e a decisão do visitante.
+- Manter um contrato único de contato em `lib/contact.ts` e enums em `lib/leads.ts`.
+- Testar o qualificador vazio, revisão, edição, navegação por teclado e abertura externa sem envio automático.
+- Não coletar dados pessoais por conveniência de conversão.
+- Não apresentar dinheiro recuperado, selos ou depoimentos sem evidência fornecida pelo negócio.
+- Não tratar zero violações automáticas como certificação completa de acessibilidade.

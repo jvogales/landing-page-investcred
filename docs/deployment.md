@@ -16,6 +16,12 @@ Conecte `jvogales/landing-page-investcred` à Vercel e use:
 
 `vercel.json` declara o framework e os comandos. Remova configurações antigas de HTML estático, `pages/landing.html`, Live Server e diretórios `dist` ou `public` como saída do build. `public` contém assets, não a aplicação compilada.
 
+## Preview da remodelação
+
+A nova interface e o qualificador ficam na branch `feat/lead-experience`. Para avaliar a versão nova, crie um Preview Deployment dessa branch. A versão de organização anterior estava em `chore/qa-project-review`; escolher essa branch não inclui automaticamente a remodelação.
+
+O fluxo de interesse usa apenas opções guiadas e encaminhamento explícito ao WhatsApp; não requer nova variável de ambiente ou serviço de backend. Valide a página, a revisão da mensagem e o retorno de `/privacidade` antes de promover para produção.
+
 ## Branch de produção
 
 A recomendação é usar `main` como branch padrão e de produção **depois** de integrar a versão Next.js e esta organização nela. No diagnóstico de 21/10/2026, `main` ainda estava atrás e a branch padrão remota era `cleanup/remove-old-static`. Não selecione `main` para produção antes de integrar as alterações. Consulte [branches](branches.md).
@@ -29,6 +35,7 @@ npm ci
 npm run check
 npm run build
 npm run test:smoke
+npm run test:e2e
 ```
 
 ## Diagnóstico

@@ -1,42 +1,145 @@
 {
-  "viewports": [
+  "command": "PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:e2e",
+  "runAt": "2026-10-22T14:01:18.608Z",
+  "durationMs": 41172,
+  "stats": {
+    "startTime": "2026-10-22T14:01:18.608Z",
+    "duration": 41172.412,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tools": {
+    "playwright": "1.64.1",
+    "axePlaywright": "4.14.0"
+  },
+  "projects": {
+    "logic": {
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    "desktop": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "mobile": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "accessibility": [
     {
-      "width": 320,
-      "axe": {
-        "violations": [],
-        "incomplete": [
-          "color-contrast"
-        ]
-      }
+      "project": "desktop",
+      "state": "validation-error",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1,
+          "reasons": [
+            "bgGradient"
+          ],
+          "targets": [
+            {
+              "selector": [
+                ".art-caption"
+              ],
+              "html": "<span class=\"art-caption\">CUIDADO COMEÇA COM ATENÇÃO.</span>"
+            }
+          ]
+        }
+      ]
     },
     {
-      "width": 375,
-      "axe": {
-        "violations": [],
-        "incomplete": [
-          "color-contrast"
-        ]
-      }
+      "project": "desktop",
+      "state": "review",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1,
+          "reasons": [
+            "bgGradient"
+          ],
+          "targets": [
+            {
+              "selector": [
+                ".art-caption"
+              ],
+              "html": "<span class=\"art-caption\">CUIDADO COMEÇA COM ATENÇÃO.</span>"
+            }
+          ]
+        }
+      ]
     },
     {
-      "width": 768,
-      "axe": {
-        "violations": [],
-        "incomplete": [
-          "color-contrast"
-        ]
-      }
+      "project": "desktop",
+      "state": "initial",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1,
+          "reasons": [
+            "bgGradient"
+          ],
+          "targets": [
+            {
+              "selector": [
+                ".art-caption"
+              ],
+              "html": "<span class=\"art-caption\">CUIDADO COMEÇA COM ATENÇÃO.</span>"
+            }
+          ]
+        }
+      ]
     },
     {
-      "width": 1440,
-      "axe": {
-        "violations": [],
-        "incomplete": [
-          "color-contrast"
-        ]
-      }
+      "project": "desktop",
+      "state": "privacy",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "project": "desktop",
+      "state": "404",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "project": "mobile",
+      "state": "validation-error",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "project": "mobile",
+      "state": "review",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "project": "mobile",
+      "state": "initial",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "project": "mobile",
+      "state": "privacy",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "project": "mobile",
+      "state": "404",
+      "violations": [],
+      "incomplete": []
     }
   ],
-  "errors": [],
-  "failed_requests": []
+  "screenshots": 10
 }

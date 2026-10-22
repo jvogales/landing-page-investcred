@@ -56,8 +56,15 @@ try {
   }
   assert.ok(response, `Server did not become ready: ${logs}`);
   assert.match(response.headers.get('content-type') ?? '', /text\/html/);
+  assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
+  assert.equal(response.headers.get('x-frame-options'), 'DENY');
+  assert.equal(response.headers.get('referrer-policy'), 'strict-origin-when-cross-origin');
+  assert.equal(response.headers.get('x-powered-by'), null, 'Framework fingerprint must not be exposed');
+  for (const capability of ['camera=()', 'microphone=()', 'geolocation=()', 'payment=()']) {
+    assert.ok(response.headers.get('permissions-policy')?.includes(capability), `Unrestricted capability: ${capability}`);
+  }
   const html = await response.text();
-  for (const expected of ['MAX ASSESSORIA', '<main', 'id="servicos"', 'wa.me/']) {
+  for (const expected of ['MAX ASSESSORIA', '<main', 'id="servicos"', 'id="orientacao"', 'Preparar conversa com a MAX', 'wa.me/']) {
     assert.ok(html.includes(expected), `Missing expected content: ${expected}`);
   }
   assert.match(html, /<html[^>]+lang="pt-BR"/, 'Document language must match the Portuguese content');
@@ -66,7 +73,7 @@ try {
 
   const ids = [...html.matchAll(/\bid="([^"\s]+)"/g)].map(match => match[1]);
   assert.equal(new Set(ids).size, ids.length, 'HTML IDs must be unique');
-  for (const [, target] of html.matchAll(/\bhref="#([^"\s]+)"/g)) {
+  for (const [, target] of html.matchAll(/\bhref="\/?#([^"\s]+)"/g)) {
     assert.ok(ids.includes(decodeURIComponent(target)), `Broken anchor: #${target}`);
   }
 
@@ -84,7 +91,7 @@ try {
   const notFound = await request('/__smoke_missing_page__');
   assert.equal(notFound.status, 404);
   await notFound.body?.cancel();
-  console.log(`Smoke passed: homepage, metadata, navigation anchors, ${assets.size} assets and 404`);
+  console.log(`Smoke passed: homepage, security headers, metadata, lead entry, navigation anchors, ${assets.size} assets and 404`);
 } finally {
   if (server.exitCode === null && server.signalCode === null && server.pid) {
     const exited = once(server, 'exit');
