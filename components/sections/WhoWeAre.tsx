@@ -13,7 +13,7 @@ const InfoBlock = ({ title, description, index }: InfoBlockProps) => {
   return (
     <motion.div
       className={styles.block}
-      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+      initial={false}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ 
@@ -48,11 +48,11 @@ export default function WhoWeAre() {
   ];
 
   return (
-    <section className={styles.whoWeAre}>
+    <section id="sobre" className={styles.whoWeAre}>
       <div className={styles.container}>
         <motion.div
           className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -69,24 +69,24 @@ export default function WhoWeAre() {
 
         <motion.div
           className={styles.values}
-          initial={{ opacity: 0, y: 40 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <div className={styles.valueItem}>
             <div className={styles.valueIcon}>💼</div>
-            <h4 className={styles.valueName}>Ética</h4>
+            <h3 className={styles.valueName}>Ética</h3>
             <p className={styles.valueDesc}>Agimos com total transparência e honestidade em todas as nossas ações</p>
           </div>
           <div className={styles.valueItem}>
             <div className={styles.valueIcon}>⚖️</div>
-            <h4 className={styles.valueName}>Justiça</h4>
+            <h3 className={styles.valueName}>Justiça</h3>
             <p className={styles.valueDesc}>Lutamos pela proteção e defesa dos direitos de nossos clientes</p>
           </div>
           <div className={styles.valueItem}>
             <div className={styles.valueIcon}>❤️</div>
-            <h4 className={styles.valueName}>Humanidade</h4>
+            <h3 className={styles.valueName}>Humanidade</h3>
             <p className={styles.valueDesc}>Entendemos as dificuldades e oferecemos atendimento humanizado</p>
           </div>
         </motion.div>

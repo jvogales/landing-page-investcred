@@ -1,27 +1,46 @@
-A modern HTML project utilizing CSS for building responsive web applications with minimal setup.
+# MAX ASSESSORIA — website
 
-## 🚀 Features
+Landing page de consultoria jurídica e defesa de direitos financeiros. O repositório mantém o nome histórico `landing-page-investcred`; a aplicação atual usa Next.js App Router, React, TypeScript, CSS Modules e Framer Motion.
 
-- **HTML5** - Modern HTML structure with best practices
-- **CSS** – A stylesheet language used to style HTML elements for building and customizing web interfaces.
+## Começar
 
-## 📁 Project Structure
+Requer Node.js 24 e npm (a versão do Node está em `.nvmrc`).
 
-```
-html_app/
-├── pages/              # Additional HTML pages
-├── index.html          # Main HTML entry point
-└── assets/             # Images, fonts, and other static assets
-
+```bash
+npm ci
+npm run dev
 ```
 
-## 🎨 Styling
+Não há backend, banco de dados ou variável de ambiente obrigatória. O contato usa links de WhatsApp. `.env.example` documenta esse estado; nunca versione credenciais.
 
-This project uses CSS for styling.
+## Validar e executar em produção
 
-## 🙏 Acknowledgments
+```bash
+npm run check
+npm run build
+npm run test:smoke
+npm start
+```
 
-- Built with [Rocket.new](https://rocket.new)
-- Powered by HTML and CSS
+O smoke test inicia seu próprio servidor de produção na porta 3100, valida página, metadados, âncoras, assets JavaScript/CSS e uma rota inexistente, e encerra o processo. Requer build anterior e porta livre. Não execute `dev` e `build` simultaneamente: ambos escrevem em `.next`.
 
-Built with ❤️ on Rocket.new
+## Estrutura
+
+- `app/`: layout, metadados e composição da página inicial.
+- `components/`: cabeçalho, rodapé, seções e componentes reutilizáveis.
+- `styles/globals.css`: estilos e tokens globais.
+- `public/`: arquivos estáticos.
+- `scripts/`: verificações executáveis.
+- `docs/`: desenvolvimento, deploy e fluxo Git.
+
+## Documentação
+
+- [Desenvolvimento](docs/development.md)
+- [Deploy na Vercel](docs/deployment.md)
+- [Branches e contribuições](CONTRIBUTING.md)
+- [Diagnóstico das branches existentes](docs/branches.md)
+- [Revisão de QA](docs/qa.md)
+- [Histórico](CHANGELOG.md)
+- [Contato](CONTACT.md)
+
+A documentação de HTML/Live Server foi substituída. Registros históricos estão em [docs/archive](docs/archive/README.md) e não são instruções atuais.

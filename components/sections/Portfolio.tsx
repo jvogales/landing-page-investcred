@@ -13,7 +13,7 @@ const PortfolioItem = ({ title, tags, index }: PortfolioItemProps) => {
   return (
     <motion.div
       className={styles.item}
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={false}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -54,16 +54,16 @@ export default function Portfolio() {
     },
     {
       title: 'Restituição e Cancelamento',
-      tags: ['Direitos Garantidos', 'Sucesso'],
+      tags: ['Análise do Caso', 'Orientação'],
     },
   ];
 
   return (
-    <section id="servicos" className={styles.portfolio}>
+    <section id="atuacao" className={styles.portfolio}>
       <div className={styles.container}>
         <motion.div
           className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -73,7 +73,7 @@ export default function Portfolio() {
 
         <motion.div
           className={styles.grid}
-          initial={{ opacity: 0 }}
+          initial={false}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, staggerChildren: 0.15 }}

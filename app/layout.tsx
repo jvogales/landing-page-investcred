@@ -1,4 +1,8 @@
 import type { Metadata } from 'next';
+import '@fontsource/prompt/400.css';
+import '@fontsource/prompt/500.css';
+import '@fontsource/prompt/700.css';
+import '@fontsource/prompt/900.css';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
@@ -29,11 +33,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;400;500;700;900&display=swap" rel="stylesheet" />
-      </head>
       <body>
         {children}
       </body>

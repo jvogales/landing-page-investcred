@@ -105,7 +105,7 @@
   padding: 12px 24px;
   font-size: 14px;
   font-weight: 600;
-  color: #48D1CC;
+  color: #ffffff;
   margin-bottom: 30px;
   backdrop-filter: blur(10px);
 }
@@ -117,14 +117,11 @@
   color: #ffffff;
   margin: 30px 0;
   line-height: 1.2;
-  word-spacing: 9999px;
+  overflow-wrap: anywhere;
 }
 
 .highlight {
-  background: linear-gradient(135deg, #48D1CC 0%, #2BA39D 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #8eefe9;
   word-spacing: normal;
 }
 
@@ -165,7 +162,7 @@
 
 .btnPrimary {
   background: linear-gradient(135deg, #48D1CC 0%, #2BA39D 100%);
-  color: #ffffff;
+  color: var(--c-on-primary);
   box-shadow: 0px 20px 50px rgba(72, 209, 204, 0.3);
 }
 
@@ -177,7 +174,7 @@
 .btnSecondary {
   background: transparent;
   border: 2px solid #48D1CC;
-  color: #48D1CC;
+  color: #E8F7F6;
 }
 
 .btnSecondary:hover {
@@ -202,7 +199,6 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
 }
@@ -237,7 +233,7 @@
 .benefitLabel {
   font-size: 14px;
   font-weight: 600;
-  color: #48D1CC;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -254,8 +250,8 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
-  color: #48D1CC;
-  opacity: 0.6;
+  color: #E8F7F6;
+  opacity: 1;
   cursor: pointer;
   z-index: 2;
 }
@@ -347,4 +343,18 @@
   .benefitValue {
     font-size: 14px;
   }
+}
+
+.btnPrimary, .btnSecondary { display: inline-flex; align-items: center; justify-content: center; }
+.btnPrimary:active, .btnSecondary:active { transform: translateY(0); }
+.scrollIndicator { text-decoration: none; min-width: 44px; text-align: center; }
+
+@media (max-width: 768px) {
+  /* Lead with the decision and contact action; decoration is secondary on phones. */
+  .hero { padding-top: 110px; padding-bottom: 64px; }
+  .illustration { display: none; }
+  .badge { padding: 8px 16px; margin-bottom: 8px; }
+  .title { margin: 16px 0; }
+  .subtitle { margin: 16px 0 24px; }
+  .cta { margin: 24px 0; }
 }

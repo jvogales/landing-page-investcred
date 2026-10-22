@@ -1,70 +1,17 @@
-# Changelog - MAX ASSESSORIA Website
+# Histórico de alterações
 
-## [1.0.0] - 2026-03-04
+## Não publicado
 
-### Mudanças Principais
-- **Transação de Marca**: INVESTCRED → MAX ASSESSORIA
-- **Reorganização do Projeto**: Estrutura melhorada e documentação completa
-- **Atualização de Conteúdo**: Todos os textos, metas e descrições atualizados
+- Documentação unificada para o projeto Next.js, com guias de desenvolvimento, Vercel e branches.
+- Next.js e configuração ESLint atualizados para 15.5.28; PostCSS corrigido via override e dependência `clsx` não utilizada removida.
+- Lockfile npm e Node.js 24 padronizados para instalação reproduzível.
+- Configuração da Vercel corrigida para usar `npm ci` com lockfile.
+- Referência TypeScript a arquivo inexistente removida.
+- `.gitignore` restaurado e configuração antiga do Live Server substituída.
+- CI com auditoria de produção, lint, TypeScript, build e smoke test ampliado.
+- Navegação e contatos unificados, menu por teclado, foco, contraste e movimento reduzido revisados.
+- Fontes servidas localmente, sem dependência de Google Fonts.
+- Depoimentos e promessas quantitativas sem evidência substituídos por explicação do atendimento.
+- Documentação e configuração legadas preservadas em `docs/archive`.
 
-### Alterações de Conteúdo
-
-#### index.html
-- ✅ Atualizado nome da empresa para MAX ASSESSORIA
-- ✅ Redirecionamento mantido para landing.html
-
-#### pages/landing.html
-- ✅ Meta description atualizada
-- ✅ Meta keywords atualizadas
-- ✅ Meta author atualizado
-- ✅ Open Graph tags (og:title, og:description, og:url, og:site_name) atualizadas
-- ✅ Twitter Card tags atualizadas
-- ✅ Title tag atualizado
-- ✅ Hero section com novo título
-- ✅ Descrição da empresa atualizada
-- ✅ Email atualizado: contato@maxassessoria.com.br
-- ✅ Footer copyright atualizado
-- ✅ WhatsApp link text atualizado
-- ✅ Alt text das imagens atualizado
-
-#### assets/css/styles.css
-- ✅ Comentário de identificação atualizado
-- ✅ Paleta de cores mantida (azul e amarelo)
-- ✅ Tipografia mantida
-
-### Estrutura do Projeto
-
-Nova organização:
-```
-projeto-maxassessoria/
-├── index.html                # Página inicial (redirecionamento)
-├── pages/                    # Páginas HTML
-│   └── landing.html
-├── assets/                   # Arquivos estáticos
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── src/                      # Pasta para futuros desenvolvimentos
-├── docs/                     # Documentação
-│   └── README.md
-├── config.json              # Configuração do projeto
-└── .gitignore               # Arquivo de exclusão Git
-```
-
-### Novos Arquivos
-- 📄 `docs/README.md` - Documentação completa do projeto
-- 📄 `config.json` - Configuração centralizada do projeto
-- 📄 `CHANGELOG.md` - Histórico de mudanças
-
-### Próximas Melhorias Sugeridas
-- [ ] Implementar minificação de CSS/JS para produção
-- [ ] Adicionar testes automáticos
-- [ ] Implementar lazy loading de imagens
-- [ ] Configurar CI/CD
-- [ ] Adicionar analytics
-- [ ] Criar versão de administração para atualizações de conteúdo
-
----
-
-**Status**: ✅ Concluído
-**Data**: 04 de março de 2026
+Publicação e consolidação das branches remotas ainda não foram realizadas. O histórico anterior está no [arquivo](docs/archive/changelog-static.md).

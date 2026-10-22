@@ -6,20 +6,21 @@ import WhoWeAre from '@/components/sections/WhoWeAre';
 import Services from '@/components/sections/Services';
 import CTASection from '@/components/sections/CTASection';
 import Portfolio from '@/components/sections/Portfolio';
-import Testimonials from '@/components/sections/Testimonials';
+import Atendimento from '@/components/sections/Atendimento';
 
 export default function Home() {
   return (
     <>
+      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <Header />
-      <main>
+      <main id="conteudo" tabIndex={-1}>
         <Hero />
         <Highlights />
         <WhoWeAre />
         <Services />
         <CTASection />
         <Portfolio />
-        <Testimonials />
+        <Atendimento />
       </main>
       <Footer />
     </>

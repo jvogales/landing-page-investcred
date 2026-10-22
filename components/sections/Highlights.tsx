@@ -14,7 +14,7 @@ const HighlightItem = ({ title, description, icon, index }: HighlightItemProps) 
   return (
     <motion.div
       className={styles.item}
-      initial={{ opacity: 0, y: 50 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ 
@@ -38,13 +38,13 @@ const HighlightItem = ({ title, description, icon, index }: HighlightItemProps) 
 export default function Highlights() {
   const highlights = [
     {
-      title: 'Expertos em RMC',
+      title: 'Especialistas em RMC',
       description: 'Especializados em análise de contratos de Cartões RMC e intermediação jurídica.',
       icon: '📊',
     },
     {
-      title: 'Resultados Comprovados',
-      description: 'Histórico de sucesso em recuperação de direitos financeiros para nossas clientes.',
+      title: 'Orientação individual',
+      description: 'Informações sobre seus direitos e as possibilidades de atendimento para o seu caso.',
       icon: '✅',
     },
     {
@@ -64,7 +64,7 @@ export default function Highlights() {
       <div className={styles.container}>
         <motion.div
           className={styles.header}
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -75,7 +75,7 @@ export default function Highlights() {
 
         <motion.div
           className={styles.grid}
-          initial={{ opacity: 0 }}
+          initial={false}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6 }}

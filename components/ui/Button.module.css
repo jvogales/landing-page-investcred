@@ -1,5 +1,8 @@
 .button {
   font-family: inherit;
+  text-decoration: none;
+  text-align: center;
+  min-height: 44px;
   border: none;
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -14,7 +17,7 @@
 /* Variants */
 .primary {
   background: var(--gradient-primary);
-  color: #ffffff;
+  color: var(--c-on-primary);
   box-shadow: 0px 4px 15px rgba(72, 209, 204, 0.3);
 }
 
@@ -39,7 +42,7 @@
 .outline {
   background: transparent;
   border: 2px solid var(--c-primary);
-  color: var(--c-primary);
+  color: #176660;
 }
 
 .outline:hover {

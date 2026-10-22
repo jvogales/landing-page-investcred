@@ -7,22 +7,31 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "lint": "eslint app components --ext .ts,.tsx --report-unused-disable-directives",
+    "type-check": "tsc --noEmit",
+    "check": "npm run lint && npm run type-check",
+    "test:smoke": "node scripts/smoke.mjs",
+    "audit:production": "npm audit --omit=dev --audit-level=high"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "next": "^14.0.0",
+    "@fontsource/prompt": "5.3.0",
     "framer-motion": "^10.16.0",
-    "clsx": "^2.0.0"
+    "next": "15.5.28",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "typescript": "^5.3.0",
+    "@types/node": "^20.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "@types/node": "^20.0.0",
     "eslint": "^8.0.0",
-    "eslint-config-next": "^14.0.0"
+    "eslint-config-next": "15.5.28",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "overrides": {
+    "postcss": "8.5.31"
   }
 }

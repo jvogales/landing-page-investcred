@@ -165,3 +165,8 @@
     font-size: 24px;
   }
 }
+
+/* Text must remain readable at both ends of the turquoise gradient. */
+.card .title, .card .tag, .card .dot, .card .description {
+  color: var(--c-on-primary);
+}

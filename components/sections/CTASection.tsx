@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import styles from './CTASection.module.css';
-import Button from '@/components/ui/Button';
+import { LinkButton } from '@/components/ui/Button';
+import { WHATSAPP_URL } from '@/components/contact';
 
 export default function CTASection() {
   return (
@@ -10,44 +11,40 @@ export default function CTASection() {
       <div className={styles.container}>
         <motion.div
           className={styles.content}
-          initial={{ opacity: 0, y: 30 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
         >
           <h2 className={styles.title}>Quer saber como defendemos seus direitos?</h2>
           <p className={styles.subtitle}>
-            Agende uma consultoria gratuita com nossos especialistas e descubra como recuperar seu dinheiro.
+            Converse com a equipe para entender as possibilidades de atendimento e os próximos passos para o seu caso.
           </p>
 
           <motion.div
             className={styles.buttons}
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={false}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <a href="https://wa.me/5531999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consultoria%20gratuita%20com%20a%20MAX." target="_blank" rel="noopener noreferrer">
-              <Button variant="primary" size="lg">
-                ✓ AGENDAR CONSULTORIA
-              </Button>
-            </a>
-            <a href="#servicos">
-              <Button variant="secondary" size="lg">
-                CONHECER SERVIÇOS
-              </Button>
-            </a>
+            <LinkButton href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" variant="primary" size="lg">
+              Conversar no WhatsApp <span className="sr-only">(abre em nova aba)</span>
+            </LinkButton>
+            <LinkButton href="#servicos" variant="secondary" size="lg">
+              Conhecer serviços
+            </LinkButton>
           </motion.div>
 
           <div className={styles.benefits}>
             <div className={styles.benefit}>
-              <span>✓ Análise Gratuita</span>
+              <span>✓ Orientação especializada</span>
             </div>
             <div className={styles.benefit}>
-              <span>✓ Sem Compromisso</span>
+              <span>✓ Informações claras</span>
             </div>
             <div className={styles.benefit}>
-              <span>✓ Resultado Garantido</span>
+              <span>✓ Atendimento personalizado</span>
             </div>
           </div>
         </motion.div>

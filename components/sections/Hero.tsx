@@ -1,11 +1,13 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
+import { WHATSAPP_URL } from '@/components/contact';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   const ref = useRef(null);
+  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
@@ -14,9 +16,9 @@ export default function Hero() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   const benefits = [
-    { icon: '⚖️', label: 'Ação Jurídica', value: '87% de sucesso' },
-    { icon: '💰', label: 'Recuperação', value: 'Até R$ 50 mil' },
-    { icon: '🚀', label: 'Rápido', value: 'Em poucas semanas' },
+    { icon: '⚖️', label: 'Direitos financeiros', value: 'Orientação jurídica' },
+    { icon: '💰', label: 'Contratos bancários', value: 'Análise do seu caso' },
+    { icon: '🤝', label: 'Atendimento', value: 'Acompanhamento próximo' },
   ];
 
   const containerVariants = {
@@ -47,12 +49,13 @@ export default function Hero() {
       
       <motion.div 
         className={styles.container}
-        style={{ y: backgroundY }}
+        style={{ y: reduceMotion ? 0 : backgroundY }}
       >
         {/* Illustration - Left side circles */}
         <motion.div
           className={styles.illustration}
-          initial={{ opacity: 0, x: -50 }}
+          aria-hidden="true"
+          initial={false}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
@@ -92,11 +95,11 @@ export default function Hero() {
         <motion.div
           className={styles.content}
           variants={containerVariants}
-          initial="hidden"
+          initial={false}
           animate="visible"
         >
           <motion.div className={styles.badge} variants={itemVariants}>
-            ✨ Consultoria 100% Gratuita
+            ✨ Consultoria especializada
           </motion.div>
 
           <motion.h1 className={styles.title} variants={itemVariants}>
@@ -105,19 +108,14 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p className={styles.subtitle} variants={itemVariants}>
-            Somos especialistas em defender seus direitos contra bancos que cobram abusivamente. 
-            Já recuperamos milhares em restituições para nossos clientes.
+            Orientação sobre contratos bancários e descontos abusivos. Entenda seus direitos e os próximos passos para o seu caso.
           </motion.p>
 
           <motion.div className={styles.cta} variants={itemVariants}>
-            <a href="https://wa.me/5531999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consultoria%20gratuita%20com%20a%20MAX." target="_blank" rel="noopener noreferrer">
-              <button className={styles.btnPrimary}>
-                ✓ Começar Consultoria
-              </button>
+            <a href={WHATSAPP_URL} className={styles.btnPrimary} target="_blank" rel="noopener noreferrer">
+              Conversar no WhatsApp <span className="sr-only">(abre em nova aba)</span>
             </a>
-            <button className={styles.btnSecondary}>
-              Saber mais
-            </button>
+            <a href="#sobre" className={styles.btnSecondary}>Saber mais</a>
           </motion.div>
         </motion.div>
 
@@ -127,7 +125,7 @@ export default function Hero() {
             <motion.div
               key={index}
               className={styles.benefitCard}
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               animate={{ opacity: 1, y: [0, -10, 0] }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{
@@ -149,13 +147,15 @@ export default function Hero() {
       </motion.div>
 
       {/* Scroll indicator */}
-      <motion.div
+      <motion.a
+        href="#sobre"
+        aria-label="Conhecer a MAX ASSESSORIA"
         className={styles.scrollIndicator}
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <span>↓</span>
-      </motion.div>
+        <span aria-hidden="true">↓</span>
+      </motion.a>
     </section>
   );
 }
